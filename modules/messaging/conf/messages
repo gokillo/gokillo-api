@@ -1,0 +1,9 @@
+# Email message strings
+
+# Notifications when a user triggers an event in a thread
+messaging.email.newPostInThread.subject = New Post in Thread "{0}"
+messaging.email.newPostInThread.body = The following post was submitted by {0} on {1}:
+messaging.email.updateInThread.subject = Update in Thread "{0}"
+messaging.email.updateInThread.body = The following post was updated by {0} on {1}:
+messaging.email.removalInThread.subject = Removal in Thread "{0}"
+messaging.email.removalInThread.body = The following post was removed by {0} on {1}:

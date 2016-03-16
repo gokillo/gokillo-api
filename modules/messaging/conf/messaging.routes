@@ -1,0 +1,36 @@
+# @brief Defines the routes for the messaging module (higher priority routes first)
+# @begin 11-Jul-2014
+# @author <a href="giuseppe.greco@gokillo.com">Giuseppe Greco</a>
+
+# Threads management
+POST    /threads                            controllers.messaging.Threads.create
+PUT     /threads/:threadId                  controllers.messaging.Threads.update(threadId)
+DELETE  /threads/:threadId                  controllers.messaging.Threads.delete(threadId)
+GET     /threads/:threadId                  controllers.messaging.Threads.find(threadId)
+POST    /threads/:threadId/grantees         controllers.messaging.Threads.grantMembership(threadId)
+DELETE  /threads/:threadId/grantees         controllers.messaging.Threads.revokeMembership(threadId)
+GET     /threads/:threadId/message-count    controllers.messaging.Threads.getMessageCount(threadId)
+GET     /threads/all/:page/:perPage         controllers.messaging.Threads.list(page: Int, perPage: Int)
+GET     /threads/confidential/:page/:perPage controllers.messaging.Threads.listConfidential(page: Int, perPage: Int)
+POST    /threads/ref-id/:page/:perPage      controllers.messaging.Threads.listByRefId(page: Int, perPage: Int)
+GET     /threads/all/count                  controllers.messaging.Threads.count(domain ?= null)
+GET     /threads/confidential/count         controllers.messaging.Threads.countConfidential
+POST    /threads/ref-id/count               controllers.messaging.Threads.countByRefId
+
+# Messages management
+POST    /threads/:threadId/messages         controllers.messaging.Threads.createMessage(threadId)
+PUT     /threads/:threadId/messages/:index  controllers.messaging.Threads.updateMessage(threadId, index: Int)
+DELETE  /threads/:threadId/messages/:index  controllers.messaging.Threads.deleteMessage(threadId, index: Int)
+GET     /threads/:threadId/messages/:index  controllers.messaging.Threads.findMessage(threadId, index: Int)
+GET     /threads/:threadId/messages/:page/:perPage controllers.messaging.Threads.listMessages(threadId, page: Int, perPage: Int)
+
+# Notifications management
+POST    /notifications                      controllers.messaging.Notifications.create
+PUT     /notifications/:notificationId      controllers.messaging.Notifications.update(notificationId)
+DELETE  /notifications/:notificationId      controllers.messaging.Notifications.delete(notificationId)
+GET     /notifications/:notificationId      controllers.messaging.Notifications.find(notificationId)
+GET     /notifications/all/:page/:perPage   controllers.messaging.Notifications.list(page: Int, perPage: Int)
+POST    /notifications/:notificationId/send controllers.messaging.Notifications.send(notificationId)
+
+# Rendering of zipped emails
+GET     /emails/:zipped                     controllers.messaging.Emails.render(zipped)

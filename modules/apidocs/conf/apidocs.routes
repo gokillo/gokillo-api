@@ -1,0 +1,20 @@
+# @brief Defines the routes for the apidocs module (higher priority routes first)
+# @begin 2-Jan-2014
+# @author <a href="giuseppe.greco@gokillo.com">Giuseppe Greco</a>
+
+# Swagger
+GET     /                           controllers.ApiHelpController.getResources
+GET     /auth/users                 controllers.ApiHelpController.getResource(path = "/auth/users")
+GET     /auth/apps                  controllers.ApiHelpController.getResource(path = "/auth/apps")
+GET     /core/projects              controllers.ApiHelpController.getResource(path = "/core/projects")
+GET     /core/algorithms            controllers.ApiHelpController.getResource(path = "/core/algorithms")
+GET     /core/leftovers             controllers.ApiHelpController.getResource(path = "/core/leftovers")
+GET     /core/fees                  controllers.ApiHelpController.getResource(path = "/core/fees")
+GET     /media/carousel             controllers.ApiHelpController.getResource(path = "/media/carousel")
+GET     /messaging/notifications    controllers.ApiHelpController.getResource(path = "/messaging/notifications")
+GET     /messaging/threads          controllers.ApiHelpController.getResource(path = "/messaging/threads")
+GET     /messaging/emails           controllers.ApiHelpController.getResource(path = "/messaging/emails")
+GET     /pay/orders                 controllers.ApiHelpController.getResource(path = "/pay/orders")
+GET     /pay/transactions           controllers.ApiHelpController.getResource(path = "/pay/transactions")
+GET     /pay/rates                  controllers.ApiHelpController.getResource(path = "/pay/rates")
+GET     /pay/wallets                controllers.ApiHelpController.getResource(path = "/pay/wallets")

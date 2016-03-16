@@ -1,0 +1,16 @@
+# Base message strings
+common.email = Email
+common.phone = Phone
+common.mobile = Mobile
+common.informationRequest = Information Request
+common.supportRequest = Support Request
+
+# Email message strings
+common.email.greeting = Greetings,
+common.email.greeting.to = Dear {0},
+common.email.salutation = Take care.
+common.email.troubleViewingEmail = Trouble viewing this email?
+common.email.viewInBrowser = View in browser
+
+# Roles
+common.role.agent = Automated Agent

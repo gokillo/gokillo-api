@@ -1,0 +1,13 @@
+# @brief Defines the application routes (higher priority routes first)
+# @begin 15-Dec-2013
+# @author <a href="giuseppe.greco@gokillo.com">Giuseppe Greco</a>
+
+# Application modules
+-> /auth auth.Routes
+-> /core core.Routes
+-> /media media.Routes
+-> /messaging messaging.Routes
+-> /pay pay.Routes
+
+# API documentation
+-> /api-docs apidocs.Routes

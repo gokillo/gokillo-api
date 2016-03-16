@@ -1,0 +1,20 @@
+@(dateTime: org.joda.time.DateTime, user: models.auth.User)(implicit lang: Lang)
+
+@import scala.util.control.Breaks._
+@import org.joda.time.{DateTime, DateTimeZone}
+@import org.joda.time.format.DateTimeFormat
+
+@formatWithZone = @{
+  var timeZone = DateTimeZone.forID(null)
+  user.addresses.map { addresses => breakable {
+    addresses.map { address => if (address.default) {
+      address.timeZone.map { tz =>
+        timeZone = DateTimeZone.forID(tz)
+      }
+      break
+    }}
+  }}
+  DateTimeFormat.mediumDateTime.withZone(timeZone).print(dateTime)
+}
+
+@formatWithZone

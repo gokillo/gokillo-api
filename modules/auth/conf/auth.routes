@@ -1,0 +1,90 @@
+# @brief Defines the routes for the auth module (higher priority routes first)
+# @begin 2-Jan-2014
+# @author <a href="giuseppe.greco@gokillo.com">Giuseppe Greco</a>
+
+# User registration and authentication
+POST    /users                                      controllers.auth.Users.create
+POST    /users/credentials                          controllers.auth.Users.authenticate
+DELETE  /users/credentials                          controllers.auth.Users.deny
+GET     /users/credentials                          controllers.auth.Users.decodeToken
+PATCH   /users/:userId/password                     controllers.auth.Users.changePassword(userId)
+POST    /users/password-reset/:usernameOrEmail      controllers.auth.Users.triggerPasswordReset(usernameOrEmail)
+PATCH   /users/password-reset                       controllers.auth.Users.resetPassword
+PUT     /users/:userId                              controllers.auth.Users.update(userId)
+DELETE  /users/:userId                              controllers.auth.Users.delete(userId)
+GET     /users/:userId                              controllers.auth.Users.find(userId)
+GET     /users/email/:email                         controllers.auth.Users.findByEmail(email)
+GET     /users/username/:username                   controllers.auth.Users.findByUsername(username)
+GET     /users/account-id/:accountId                controllers.auth.Users.findByAccountId(accountId)
+GET     /users/all/:page/:perPage                   controllers.auth.Users.list(page: Int, perPage: Int)
+GET     /users/all/:state/:page/:perPage            controllers.auth.Users.listByState(state, page: Int, perPage: Int)
+GET     /users/username/:username/:page/:perPage    controllers.auth.Users.listByUsername(username, page: Int, perPage: Int)
+POST    /users/:userId/avatar                       controllers.auth.Users.saveAvatar(userId)
+DELETE  /users/:userId/avatar                       controllers.auth.Users.deleteAvatar(userId)
+GET     /users/:userId/avatar                       controllers.auth.Users.getAvatar(userId)
+POST    /users/:userId/proofs/:proofOf/:page        controllers.auth.Users.saveProof(userId, proofOf, page: Int)
+PATCH   /users/:userId/proofs/:proofId/:proofOf     controllers.auth.Users.setProofOf(userId, proofId, proofOf)
+DELETE  /users/:userId/proofs/:proofOf              controllers.auth.Users.deleteProof(userId, proofOf)
+GET     /users/:userId/proofs/:proofOf/:page        controllers.auth.Users.getProof(userId, proofOf, page: Int)
+GET     /users/:userId/proofs                       controllers.auth.Users.listProofs(userId)
+
+PATCH   /users/registered/:userId/awaiting-verif    controllers.auth.Users.requestVerification(userId)
+PATCH   /users/awaiting-verif/:userId/verif         controllers.auth.Users.acquireForVerification(userId)
+PATCH   /users/verif/:userId/approved               controllers.auth.Users.approveVerificationRequest(userId)
+PATCH   /users/verif/:userId/registered             controllers.auth.Users.refuseVerificationRequest(userId)
+PATCH   /users/approved/:userId/registered          controllers.auth.Users.revokeApproval(userId)
+
+PATCH   /users/:userId/subscriptions/newsletter     controllers.auth.Users.subscribeToNewsletter(userId)
+DELETE  /users/:userId/subscriptions/newsletter     controllers.auth.Users.unsubscribeFromNewsletter(userId)
+DELETE  /users/public/:userId                       controllers.auth.Users.hide(userId)
+PATCH   /users/public/:userId                       controllers.auth.Users.unhide(userId)
+
+# User addresses management
+POST    /users/:userId/addresses                    controllers.auth.Users.createAddress(userId)
+PUT     /users/:userId/addresses/default            controllers.auth.Users.updateDefaultAddress(userId)
+PUT     /users/:userId/addresses/:index             controllers.auth.Users.updateAddress(userId, index: Int)
+PUT     /users/:userId/addresses/name/:name         controllers.auth.Users.updateAddressByName(userId, name)
+PATCH   /users/:userId/addresses/:index/default     controllers.auth.Users.setDefaultAddress(userId, index: Int)
+PATCH   /users/:userId/addresses/name/:name/default controllers.auth.Users.setDefaultAddressByName(userId, name)
+DELETE  /users/:userId/addresses/:index             controllers.auth.Users.deleteAddress(userId, index: Int)
+DELETE  /users/:userId/addresses/name/:name         controllers.auth.Users.deleteAddressByName(userId, name)
+GET     /users/:userId/addresses/default            controllers.auth.Users.findDefaultAddress(userId)
+GET     /users/:userId/addresses/:index             controllers.auth.Users.findAddress(userId, index: Int)
+GET     /users/:userId/addresses/name/:name         controllers.auth.Users.findAddressByName(userId, name)
+GET     /users/:userId/addresses                    controllers.auth.Users.listAddresses(userId)
+
+# User accounts management
+POST    /users/:userId/accounts                     controllers.auth.Users.createAccount(userId)
+PATCH   /users/accounts/active                      controllers.auth.Users.activateAccount
+POST    /users/:userId/accounts/:index/roles        controllers.auth.Users.assignRolesToAccount(userId, index: Int)
+POST    /users/:userId/accounts/name/:name/roles    controllers.auth.Users.assignRolesToAccountByName(userId, name)
+DELETE  /users/:userId/accounts/:index/roles        controllers.auth.Users.unassignRolesFromAccount(userId, index: Int)
+DELETE  /users/:userId/accounts/name/:name/roles    controllers.auth.Users.unassignRolesFromAccountByName(userId, name)
+PATCH   /users/:userId/accounts/:index/default      controllers.auth.Users.setDefaultAccount(userId, index: Int)
+PATCH   /users/:userId/accounts/name/:name/default  controllers.auth.Users.setDefaultAccountByName(userId, name)
+POST    /users/:userId/accounts/:index/grantees     controllers.auth.Users.shareAccount(userId, index: Int)
+POST    /users/:userId/accounts/name/:name/grantees controllers.auth.Users.shareAccountByName(userId, name)
+DELETE  /users/:userId/accounts/:index/grantees     controllers.auth.Users.unshareAccount(userId, index: Int)
+DELETE  /users/:userId/accounts/name/:name/grantees controllers.auth.Users.unshareAccountByName(userId, name)
+DELETE  /users/:userId/accounts/:index              controllers.auth.Users.deleteAccount(userId, index: Int)
+DELETE  /users/:userId/accounts/name/:name          controllers.auth.Users.deleteAccountByName(userId, name)
+GET     /users/:userId/accounts/default             controllers.auth.Users.findDefaultAccount(userId)
+GET     /users/:userId/accounts/:index              controllers.auth.Users.findAccount(userId, index: Int)
+GET     /users/:userId/accounts/name/:name          controllers.auth.Users.findAccountByName(userId, name)
+GET     /users/:userId/accounts                     controllers.auth.Users.listAccounts(userId)
+
+# API consumers management
+POST    /apps                                       controllers.auth.Apps.create
+POST    /apps/credentials                           controllers.auth.Apps.authenticate
+PUT     /apps/:appId                                controllers.auth.Apps.update(appId)
+DELETE  /apps/:appId                                controllers.auth.Apps.delete(appId)
+GET     /apps/:appId                                controllers.auth.Apps.find(appId)
+GET     /apps/name/:name                            controllers.auth.Apps.findByName(name)
+PATCH   /apps/native/:appId                         controllers.auth.Apps.acquire(appId)
+DELETE  /apps/native/:appId                         controllers.auth.Apps.drop(appId)
+GET     /apps/native/:appIdOrName/apikey            controllers.auth.Apps.getApiKeyN(appIdOrName)
+GET     /apps/:appIdOrName/apikey                   controllers.auth.Apps.getApiKey(appIdOrName)
+GET     /apps/:appId/account                        controllers.auth.Apps.getAccount(appId)
+GET     /apps/all/:page/:perPage                    controllers.auth.Apps.list(page: Int, perPage: Int)
+GET     /apps/owner/:ownerId/:page/:perPage         controllers.auth.Apps.listByOwner(ownerId, page: Int, perPage: Int)
+GET     /apps/name/:name/:page/:perPage             controllers.auth.Apps.listByName(name, page: Int, perPage: Int)

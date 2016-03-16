@@ -1,0 +1,13 @@
+@(recipient: models.auth.User, thread: models.messaging.Thread, message: models.messaging.Message)(implicit lang: Lang)
+
+@import utils.common.env._
+
+<p>@recipient.firstName.map { firstName =>
+@Messages("common.email.greeting.to", firstName)
+}.getOrElse {
+@Messages("common.email.greeting")
+}</p>
+<p>@Messages("messaging.email.newPostInThread.body", message.createdBy.get, dateTime(message.creationTime.get, recipient))</p>
+<p><b><a href="@(peers(WebApp).endPoint("viewThread") + "?threadId=" + thread.id.get)">@thread.subject.get</a></b><br/>
+@message.body.get</p>
+<p>@Messages("common.email.salutation")</p>

@@ -1,0 +1,13 @@
+@(user: models.auth.User)(implicit lang: Lang)
+
+@import utils.common.env._
+
+<p>@user.firstName.map { firstName =>
+@Messages("common.email.greeting.to", firstName)
+}.getOrElse {
+@Messages("common.email.greeting")
+}</p>
+<p>@Messages("auth.email.verificationRequestApproval.body.1")</p>
+<p>@Messages("auth.email.verificationRequestApproval.body.2")</p>
+<p><a href="@peers(WebApp).endPoint("createProject")" class="btn btn-green-gradient">@Messages("auth.email.verificationRequestApproval.createProject")</a></p>
+<p>@Messages("common.email.salutation")</p>

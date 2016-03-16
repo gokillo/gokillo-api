@@ -1,0 +1,12 @@
+@(backer: models.auth.User, originator: models.auth.User, project: models.core.Project, cashInPeriod: Int)(implicit lang: Lang)
+
+<p>@backer.firstName.map { firstName =>
+@Messages("common.email.greeting.to", firstName)
+}.getOrElse {
+@Messages("common.email.greeting")
+}</p>
+<p>@Messages("core.email.backer.targetHitNotification.body.1", project.name.get)</p>
+@project.state.map { state =>
+<p>@Messages("core.email.backer.targetHitNotification.body.2", originator.username.get, dateTime(state.timestamp.plusMinutes(cashInPeriod), backer))</p>
+}
+<p>@Messages("common.email.salutation")</p>

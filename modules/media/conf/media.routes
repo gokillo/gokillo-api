@@ -1,0 +1,9 @@
+# @brief Defines the routes for the media module (higher priority routes first)
+# @begin 10-May-2015
+# @author <a href="giuseppe.greco@gokillo.com">Giuseppe Greco</a>
+
+# Carousel management
+POST    /carousel/:label    controllers.media.Carousel.saveMedia(label)
+GET     /carousel/all       controllers.media.Carousel.listMedia
+DELETE  /carousel/:mediaId  controllers.media.Carousel.deleteMedia(mediaId)
+GET     /carousel/:mediaId  controllers.media.Carousel.getMedia(mediaId)

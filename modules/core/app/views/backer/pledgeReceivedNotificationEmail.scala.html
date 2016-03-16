@@ -1,0 +1,20 @@
+@(backer: models.auth.User, originator: models.auth.User, project: models.core.Project, amount: models.pay.Coin)(implicit lang: Lang)
+
+@import utils.common.env._
+@import utils.common.typeExtensions._
+
+<p>@backer.firstName.map { firstName =>
+@Messages("common.email.greeting.to", firstName)
+}.getOrElse {
+@Messages("common.email.greeting")
+}</p>
+<p>@Messages("core.email.backer.pledgeReceivedNotification.body.1",
+  amount.refCurrency.get,
+  (amount.value * amount.rate.get) ~~ Precision(0.01),
+  amount.currency,
+  amount.value,
+  project.name.get
+)</p>
+<p><a href="@(peers(WebApp).endPoint("project") + "?id=" + project.id.get + "&state=" + project.state.get.value)" class="btn btn-green-gradient">@Messages("core.email.backer.pledgeReceivedNotification.showProject", project.name.get)</a></p>
+<p>@Messages("core.email.backer.pledgeReceivedNotification.body.2", originator.username.get)</p>
+<p>@Messages("common.email.salutation")</p>

@@ -1,0 +1,19 @@
+@(originator: models.auth.User, backer: models.auth.User, project: models.core.Project, amount: models.pay.Coin)(implicit lang: Lang)
+
+@import utils.common.typeExtensions._
+
+<p>@originator.firstName.map { firstName =>
+@Messages("common.email.greeting.to", firstName)
+}.getOrElse {
+@Messages("common.email.greeting")
+}</p>
+<p>@Messages("core.email.originator.receivedPledgeNotification.body.1",
+  backer.username.get,
+  amount.refCurrency.get,
+  (amount.value * amount.rate.get) ~~ Precision(0.01),
+  amount.currency,
+  amount.value,
+  project.name.get
+)</p>
+<p>@Messages("core.email.originator.receivedPledgeNotification.body.2", backer.username.get)</p>
+<p>@Messages("common.email.salutation")</p>

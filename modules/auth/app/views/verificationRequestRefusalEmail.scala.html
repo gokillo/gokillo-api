@@ -1,0 +1,15 @@
+@(user: models.auth.User, reason: String)(implicit lang: Lang)
+
+@import play.api.Play.current
+@import play.api.Play.configuration
+
+<p>@user.firstName.map { firstName =>
+@Messages("common.email.greeting.to", firstName)
+}.getOrElse {
+@Messages("common.email.greeting")
+}</p>
+<p>@Messages("auth.email.verificationRequestRefusal.body.1", reason)</p>
+@configuration.getString("common.emails.support").map { support =>
+</p>@Html(Messages("auth.email.verificationRequestRefusal.body.2", s"""<a href="mailto:$support">$support</a>"""))</p>
+}
+<p>@Messages("common.email.salutation")</p>

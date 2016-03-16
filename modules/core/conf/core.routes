@@ -1,0 +1,81 @@
+# @brief Defines the routes for the core module (higher priority routes first)
+# @begin 25-Apr-2014
+# @author <a href="giuseppe.greco@gokillo.com">Giuseppe Greco</a>
+
+# Project management
+POST    /projects                                   controllers.core.Projects.create
+PUT     /projects/open/:projectId                   controllers.core.Projects.update(projectId)
+DELETE  /projects/:state/:projectId                 controllers.core.Projects.delete(projectId, state)
+GET     /projects/:state/:projectId                 controllers.core.Projects.find(projectId, state)
+GET     /projects/:state/all/:page/:perPage         controllers.core.Projects.list(state, page: Int, perPage: Int)
+GET     /projects/:state/name/:name/:page/:perPage  controllers.core.Projects.listByName(state, name, page: Int, perPage: Int)
+GET     /projects/:state/category/:category/:page/:perPage controllers.core.Projects.listByCategory(state, category, page: Int, perPage: Int)
+GET     /projects/:state/location/:location/:page/:perPage controllers.core.Projects.listByLocation(state, location, page: Int, perPage: Int)
+GET     /projects/:state/account/:accountId/:page/:perPage controllers.core.Projects.listByAccount(state, accountId, page: Int, perPage: Int)
+GET     /projects/account/:accountId/all            controllers.core.Projects.listAllByAccount(accountId)
+GET     /projects/published/ending/:lapse/:page/:perPage controllers.core.Projects.listEnding(lapse: Int, page: Int, perPage: Int)
+GET     /projects/published/latest/:page/:perPage   controllers.core.Projects.listLatest(page: Int, perPage: Int)
+GET     /projects/published/random/:resNum          controllers.core.Projects.listRandom(resNum: Int)
+GET     /projects/:state/:projectId/backers/all/count controllers.core.Projects.countBackers(state, projectId)
+GET     /projects/:state/:projectId/backers/:page/:perPage controllers.core.Projects.listBackers(state, projectId, page: Int, perPage: Int)
+GET     /projects/:state/:projectId/pledges/all/:page/:perPage controllers.core.Projects.listPledges(state, projectId, page: Int, perPage: Int)
+GET     /projects/:state/:projectId/pledges/:pledgeState/:page/:perPage controllers.core.Projects.listPledgesByState(state, projectId, pledgeState, page: Int, perPage: Int)
+GET     /projects/:state/all/count                  controllers.core.Projects.count(state)
+PATCH   /projects/:projectId/coin-address           controllers.core.Projects.changeCoinAddress(projectId)
+PATCH   /projects/open/:projectId/submitted         controllers.core.Projects.submit(projectId)
+PATCH   /projects/submitted/:projectId/audit        controllers.core.Projects.acquireForAudit(projectId)
+PATCH   /projects/audit/:projectId/published        controllers.core.Projects.publish(projectId)
+PATCH   /projects/audit/:projectId/rejected         controllers.core.Projects.reject(projectId)
+PATCH   /projects/:state/:projectId/open            controllers.core.Projects.edit(state, projectId)
+PATCH   /projects/published/:projectId/succeeded    controllers.core.Projects.grantFunding(projectId)
+PATCH   /projects/published/:projectId/closed       controllers.core.Projects.close(projectId)
+PATCH   /projects/closed/:projectId/published       controllers.core.Projects.relist(projectId)
+DELETE  /projects/closed/:projectId/pledges/:coinAddress controllers.core.Projects.refundPledges(projectId, coinAddress)
+PATCH   /projects/succeeded/:projectId/pledges/shipping-info controllers.core.Projects.setShippingInfo(projectId)
+PATCH   /projects/published/:projectId/picked       controllers.core.Projects.pick(projectId)
+DELETE  /projects/published/:projectId/picked       controllers.core.Projects.unpick(projectId)
+GET     /projects/published/picked/:page/:perPage   controllers.core.Projects.listPicked(page: Int, perPage: Int)
+POST    /projects/published/:projectId/payment-request controllers.core.Projects.issuePaymentRequest(projectId, orderId ?= null)
+PATCH   /projects/succeeded/:projectId/:coinAddress controllers.core.Projects.fund(projectId, coinAddress)
+PATCH   /projects/funded/:projectId/pledges/:pledgeId controllers.core.Projects.rewardPledge(projectId, pledgeId)
+POST    /projects/open/:projectId/media             controllers.core.Projects.saveMedia(projectId, cover: Int ?= 0)
+DELETE  /projects/open/:projectId/media/:mediaId    controllers.core.Projects.deleteMedia(projectId, mediaId)
+GET     /projects/:state/:projectId/media/all       controllers.core.Projects.listMedia(projectId, state)
+GET     /projects/:state/:projectId/media/:mediaId  controllers.core.Projects.getMedia(projectId, mediaId, state)
+GET     /projects/:state/:projectId/history         controllers.core.Projects.getHistory(projectId, state)
+
+# Project rewards management
+POST    /projects/open/:projectId/rewards           controllers.core.Projects.createReward(projectId)
+PUT     /projects/open/:projectId/rewards/:index    controllers.core.Projects.updateReward(projectId, index: Int)
+DELETE  /projects/open/:projectId/rewards/:index    controllers.core.Projects.deleteReward(projectId, index: Int)
+GET     /projects/:state/:projectId/rewards/:index  controllers.core.Projects.findReward(projectId, state, index: Int)
+GET     /projects/:state/:projectId/rewards/id/:rewardId controllers.core.Projects.findRewardById(projectId, state, rewardId)
+GET     /projects/:state/:projectId/rewards         controllers.core.Projects.listRewards(projectId, state)
+POST    /projects/open/:projectId/rewards/:index/media controllers.core.Projects.saveRewardMedia(projectId, index: Int)
+DELETE  /projects/open/:projectId/rewards/:index/media controllers.core.Projects.deleteRewardMedia(projectId, index: Int)
+GET     /projects/:state/:projectId/rewards/:index/media controllers.core.Projects.getRewardMedia(projectId, state, index: Int)
+
+# Project faqs management
+POST    /projects/open/:projectId/faqs              controllers.core.Projects.createFaq(projectId)
+PUT     /projects/open/:projectId/faqs/:index       controllers.core.Projects.updateFaq(projectId, index: Int)
+DELETE  /projects/open/:projectId/faqs/:index       controllers.core.Projects.deleteFaq(projectId, index: Int)
+GET     /projects/:state/:projectId/faqs/:index     controllers.core.Projects.findFaq(projectId, state, index: Int)
+GET     /projects/:state/:projectId/faqs            controllers.core.Projects.listFaqs(projectId, state)
+
+# Leftovers lookup and management
+POST    /leftovers/withdrawn/:coinAddress           controllers.core.Leftovers.withdraw(coinAddress)
+GET     /leftovers/withdrawn/:page/:perPage         controllers.core.Leftovers.listWithdrawn(page: Int, perPage: Int)
+GET     /leftovers/current                          controllers.core.Leftovers.findCurrent
+
+# Fees lookup
+GET     /fees/:projectId                            controllers.core.Fees.find(projectId)
+GET     /fees/all/:page/:perPage                    controllers.core.Fees.list(page: Int, perPage: Int)
+GET     /fees/all/:currency/:page/:perPage          controllers.core.Fees.listByCurrency(currency, page: Int, perPage: Int)
+GET     /fees/withheld/:page/:perPage               controllers.core.Fees.listWithheld(page: Int, perPage: Int)
+GET     /fees/withheld/:currency/:page/:perPage     controllers.core.Fees.listWithheldByCurrency(currency, page: Int, perPage: Int)
+GET     /fees/withdrawn/:page/:perPage              controllers.core.Fees.listWithdrawn(page: Int, perPage: Int)
+GET     /fees/withdrawn/:currency/:page/:perPage    controllers.core.Fees.listWithdrawnByCurrency(currency, page: Int, perPage: Int)
+
+# Machine learning algorithms
+POST    /algorithms/funding-model/train-data        controllers.core.Algorithms.trainFundingModel
+GET     /algorithms/funding-model                   controllers.core.Algorithms.getFundingModel

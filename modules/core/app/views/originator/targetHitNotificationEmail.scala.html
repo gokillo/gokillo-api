@@ -1,0 +1,15 @@
+@(originator: models.auth.User, project: models.core.Project, cashInPeriod: Int)(implicit lang: Lang)
+
+@import utils.common.env._
+
+<p>@originator.firstName.map { firstName =>
+@Messages("common.email.greeting.to", firstName)
+}.getOrElse {
+@Messages("common.email.greeting")
+}</p>
+<p>@Messages("core.email.originator.targetHitNotification.body.1", project.name.get)</p>
+<p><a href="@(peers(WebApp).endPoint("cashIn") + "?projectId=" + project.id.get + "&state=" + project.state.get.value)" class="btn btn-green-gradient">@Messages("core.email.originator.targetHitNotification.cashIn")</a></p>
+@project.state.map { state =>
+<p>@Messages("core.email.originator.targetHitNotification.body.2", dateTime(state.timestamp.plusMinutes(cashInPeriod), originator))</p>
+}
+<p>@Messages("common.email.salutation")</p>

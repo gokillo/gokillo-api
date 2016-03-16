@@ -1,0 +1,34 @@
+# Email message strings
+
+# Email verification email
+auth.email.emailVerification.subject = Verify Your Email Address
+auth.email.emailVerification.body.1 = Please click below to complete your registration.
+auth.email.emailVerification.body.2 = If you did not sign up for this account you can ignore this email and the account will be deleted.
+auth.email.emailVerification.verifyEmail = Verify My Email Address
+
+# Verification request approval email
+auth.email.verificationRequestApproval.subject = Verification Request Approved
+auth.email.verificationRequestApproval.body.1 = We are pleased to confirm you that your verification request has been approved. 
+auth.email.verificationRequestApproval.body.2 = If you already have a great idea, just click below to submit your project and let the crowd fund it.
+auth.email.verificationRequestApproval.createProject = Create My Project
+
+# Verification request refusal email
+auth.email.verificationRequestRefusal.subject = Verification Request Refused
+auth.email.verificationRequestRefusal.body.1 = We regret to inform you that your verification request has been refused for the following reason: {0}.
+auth.email.verificationRequestRefusal.body.2 = If you need further information or assistence, please send email to {0}.
+
+# Approval revocation email
+auth.email.approvalRevocation.subject = Approval Revoked
+auth.email.approvalRevocation.body.1 = We regret to inform you that your approval has been revoked for the following reason: {0}.
+auth.email.approvalRevocation.body.2 = If you need further information or assistence, please send email to {0}.
+
+# Password change notification email
+auth.email.passwordChangeNotification.subject = Your Password Has Been Changed
+auth.email.passwordChangeNotification.body = Your password has been changed. If you made this change, then just ignore this notification; otherwise, please click below to reset your password.
+auth.email.passwordChangeNotification.resetPassword = Reset My Password
+
+# Password reset email
+auth.email.passwordReset.subject = Reset Your Password
+auth.email.passwordReset.body.1 = Please click below to reset your password.
+auth.email.passwordReset.body.2 = If you did not request your password to be reset you can ignore this email and your password will remain as is.
+auth.email.passwordReset.confirm = Reset My Password

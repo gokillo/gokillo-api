@@ -1,0 +1,14 @@
+@(recipient: models.auth.User, thread: models.messaging.Thread, message: models.messaging.Message)(implicit lang: Lang)
+
+@import utils.common.env._
+@import org.joda.time.{DateTime, DateTimeZone}
+
+<p>@recipient.firstName.map { firstName =>
+@Messages("common.email.greeting.to", firstName)
+}.getOrElse {
+@Messages("common.email.greeting")
+}</p>
+<p>@Messages("messaging.email.removalInThread.body", message.createdBy.get, dateTime(DateTime.now(DateTimeZone.UTC), recipient))</p>
+<p><b><a href="@(peers(WebApp).endPoint("viewThread") + "?threadId=" + thread.id.get)">@thread.subject.get</a></b><br/>
+@message.body.get</p>
+<p>@Messages("common.email.salutation")</p>

@@ -1,0 +1,97 @@
+# Email message strings
+
+# [Originator] Publishing confirmation
+core.email.originator.publishingConfirmation.subject = Your {0} Project Has Been Published
+core.email.originator.publishingConfirmation.body = We are pleased to confirm you that your {0} project has been published. Just click below to keep an eye on it.
+core.email.originator.publishingConfirmation.showProject = Show My Project
+
+# [Originator] Project rejected notification
+core.email.originator.projectRejectedNotification.subject = Your {0} Project Has Been Rejected
+core.email.originator.projectRejectedNotification.body.1 = We regret to inform you that your {0} project has been rejected for the following reason: {1}.
+core.email.originator.projectRejectedNotification.body.2 = If you think it is worth to give your project another chance, click below to rework it.
+core.email.originator.projectRejectedNotification.reworkProject = Rework My Project
+
+# [Originator] Target hit notification
+core.email.originator.targetHitNotification.subject = Congratulations, Your {0} Project Has Reached Its Funding Target
+core.email.originator.targetHitNotification.body.1 = We are pleased to inform you that your {0} project has reached its funding target. Please click below to cash in your Bitcoin wallet.
+core.email.originator.targetHitNotification.cashIn = Cash In
+core.email.originator.targetHitNotification.body.2 = Be aware that you have time until {0} to cash in. After that time, if you have not cashed in, your project will be closed and your backers refunded.
+
+# [Originator] Funding granted by score notification
+core.email.originator.grantedByScoreNotification.subject = Congratulations, Your {0} Project Has Been Considered Eligible for Funding
+core.email.originator.grantedByScoreNotification.body.1 = We are pleased to inform you that even if your {0} project has only reached {1}% of its funding target, we still consider it eligible for funding. Please click below to cash in your Bitcoin wallet.
+core.email.originator.grantedByScoreNotification.cashIn = Cash In
+core.email.originator.grantedByScoreNotification.body.2 = Be aware that you have time until {0} to cash in. After that time, if you have not cashed in, your project will be closed and your backers refunded.
+
+# [Originator] Target missed notification
+core.email.originator.targetMissedNotification.subject = Your {0} Project Has Not Reached Its Funding Target
+core.email.originator.targetMissedNotification.body.1 = We regret to inform you that your {0} project has not reached its funding target and therefore possible backers are going to be refunded.
+core.email.originator.targetMissedNotification.body.2 = If you think it is worth to give your project another chance, click below to relist it.
+core.email.originator.targetMissedNotification.relist = Relist {0}
+
+# [Originator] Funding confirmation
+core.email.originator.fundingConfirmation.subject = Your {0} Project Has Been Funded
+core.email.originator.fundingConfirmation.body = We are pleased to confirm that your {0} project has been funded. We sent {1} {2} ({3} {4}) to your Bitcoin wallet and we hope to count your project among our success stories. In the meanwhile we take the opportunity to remind you to reward your backers.
+
+# [Originator] Cash-in reminder
+core.email.originator.cashInReminder.subject = Your {0} Project Is Ready to Be Funded
+core.email.originator.cashInReminder.body.1 = We want to remind you that your {0} project is ready to be funded. Please click below to cash in your Bitcoin wallet.
+core.email.originator.cashInReminder.cashIn = Cash In
+core.email.originator.cashInReminder.body.2 = Be aware that you have time until {0} to cash in. After that time, if you have not cashed in, your project will be closed and your backers refunded.
+
+# [Originator] Cash-in period expired notification
+core.email.originator.cashInPeriodExpiredNotification.subject = Cash-in Period for Your {0} Project Has Expired
+core.email.originator.cashInPeriodExpiredNotification.body = We regret to inform you that the cash-in period has expired and therefore your {0} project can no longer be funded. The project will be closed and your backers refunded.
+
+# [Originator] Received pledge notification
+core.email.originator.receivedPledgeNotification.subject = Your {0} Project Has Received a Pledge
+core.email.originator.receivedPledgeNotification.body.1 = {0} pledged {1} {2} ({3} {4}) to your {5} project.
+core.email.originator.receivedPledgeNotification.body.2 = We take the opportunity to remind you to reward {0} accordingly in case of success.
+
+# [Backer] Target hit notification
+core.email.backer.targetHitNotification.subject = The {0} Project Has Reached Its Funding Target
+core.email.backer.targetHitNotification.body.1 = We are pleased to inform you that the {0} project has reached its funding target and you will be rewarded according to your pledge amount.
+core.email.backer.targetHitNotification.body.2 = Be aware that {0} has time until {1} to cash in. After that time, if {0} has not cashed in, the project will be closed and you refunded.
+
+# [Backer] Funding granted by score notification
+core.email.backer.grantedByScoreNotification.subject = The {0} Project Has Been Considered Eligible for Funding
+core.email.backer.grantedByScoreNotification.body.1 = We are pleased to inform you that even if the {0} project has only reached {1}% of its funding target, we still consider it eligible for funding, and you will be rewarded according to your pledge amount.
+core.email.backer.grantedByScoreNotification.body.2 = Be aware that {0} has time until {1} to cash in. After that time, if {0} has not cashed in, the project will be closed and you refunded.
+
+# [Backer] Target missed notification
+core.email.backer.targetMissedNotification.subject = The {0} Project Has Not Reached Its Funding Target
+core.email.backer.targetMissedNotification.body.1 = We regret to inform you that the {0} project has not reached its funding target. Please click below to get refunded.
+core.email.backer.targetMissedNotification.getRefunded = Get Refunded
+core.email.backer.targetMissedNotification.body.2 = Be aware that you have time until {0} to get refunded. After that time, you will no longer be able to get refunded automatically.
+
+# [Backer] Funding confirmation
+core.email.backer.fundingConfirmation.subject = The {0} Project Has Been Funded
+core.email.backer.fundingConfirmation.body = We are pleased to confirm that the {0} project has been funded successfully. {1} really appreciates your contribution and will make sure you get rewarded. Please click below to provide a shipping address.
+core.email.backer.fundingConfirmation.setShippingAddress = Ship My Rewards to This Address
+
+# [Backer] Refunding confirmation
+core.email.backer.refundConfirmation.subject = Your Pledge to the {0} Project Has Been Refunded
+core.email.backer.refundConfirmation.body = We confirm that your pledge to the {0} project has been refunded. We sent {1} {2} ({3} {4}) to your Bitcoin wallet and hope to see you again as a backer.
+
+# [Backer] Cash-in period expired notification
+core.email.backer.cashInPeriodExpiredNotification.subject = Cash-in Period for the {0} Project Has Expired
+core.email.backer.cashInPeriodExpiredNotification.body.1 = We regret to inform you that {0} has not cashed in and therefore the {1} project has been closed. Please click below to get refunded.
+core.email.backer.cashInPeriodExpiredNotification.getRefunded = Get Refunded
+core.email.backer.cashInPeriodExpiredNotification.body.2 = Be aware that you have time until {0} to get refunded. After that time, you will no longer be able to get refunded automatically.
+
+# [Backer] Refund reminder
+core.email.backer.refundReminder.subject = The {0} Project Has Not Been Funded
+core.email.backer.refundReminder.body.1 = We want to remind you that the {0} project has not been funded. Please click below to get refunded.
+core.email.backer.refundReminder.getRefunded = Get Refunded
+core.email.backer.refundReminder.body.2 = Be aware that you have time until {0} to get refunded. After that time, you will no longer be able to get refunded automatically.
+
+# [Backer] Refund period expired notification
+core.email.backer.refundPeriodExpiredNotification.subject = Refund Period for the {0} Project Has Expired
+core.email.backer.refundPeriodExpiredNotification.body.1 = We regret to inform you that the refund period for the {0} project has expired and therefore automatic refunding is no longer available.
+core.email.backer.refundPeriodExpiredNotification.body.2 = For questions or support please send email to {0}.
+
+# [Backer] Pledge received notification
+core.email.backer.pledgeReceivedNotification.subject = The {0} Project Has Received your Pledge
+core.email.backer.pledgeReceivedNotification.body.1 = Your pledge of {0} {1} ({2} {3}) to the {4} project has been received.
+core.email.backer.pledgeReceivedNotification.body.2 = {0} really appreciates your contribution and in case of success will reward you accordingly.
+core.email.backer.pledgeReceivedNotification.showProject = Show {0}

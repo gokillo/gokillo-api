@@ -1,0 +1,12 @@
+@(backer: models.auth.User, originator: models.auth.User, project: models.core.Project)(implicit lang: Lang)
+
+@import utils.common.env._
+
+<p>@backer.firstName.map { firstName =>
+@Messages("common.email.greeting.to", firstName)
+}.getOrElse {
+@Messages("common.email.greeting")
+}</p>
+<p>@Messages("core.email.backer.fundingConfirmation.body", project.name.get, originator.username.get)</p>
+<p><a href="@(peers(WebApp).endPoint("setShippingAddress") + "?projectId=" + project.id.get + "&state=" + project.state.get.value)" class="btn btn-green-gradient">@Messages("core.email.backer.fundingConfirmation.setShippingAddress")</a></p>
+<p>@Messages("common.email.salutation")</p>

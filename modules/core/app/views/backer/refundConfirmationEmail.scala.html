@@ -1,0 +1,17 @@
+@(backer: models.auth.User, project: models.core.Project, amount: models.pay.Coin)(implicit lang: Lang)
+
+@import utils.common.typeExtensions._
+
+<p>@backer.firstName.map { firstName =>
+@Messages("common.email.greeting.to", firstName)
+}.getOrElse {
+@Messages("common.email.greeting")
+}</p>
+<p>@Messages("core.email.backer.refundConfirmation.body",
+  project.name.get,
+  amount.refCurrency.get,
+  (amount.value * amount.rate.get) ~~ Precision(0.01),
+  amount.currency,
+  amount.value
+)</p>
+<p>@Messages("common.email.salutation")</p>

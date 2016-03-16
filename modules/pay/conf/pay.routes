@@ -1,0 +1,27 @@
+# @brief Defines the routes for the pay module (higher priority routes first)
+# @begin 26-Aug-2014
+# @author <a href="giuseppe.greco@gokillo.com">Giuseppe Greco</a>
+
+# Orders management
+POST    /orders/payment-request                 controllers.pay.Orders.issuePaymentRequest
+PATCH   /orders/payment-request/:orderId/:identityMode controllers.pay.Orders.setIssuerIdentityMode(orderId, identityMode)
+GET     /orders/:orderId                        controllers.pay.Orders.find(orderId)
+GET     /orders/all/:page/:perPage              controllers.pay.Orders.list(page: Int, perPage: Int)
+GET     /orders/coin-address/:coinAddress/:page/:perPage controllers.pay.Orders.listByCoinAddress(coinAddress, page: Int, perPage: Int)
+GET     /orders/type/:orderType/:page/:perPage  controllers.pay.Orders.listByType(orderType, page: Int, perPage: Int)
+GET     /orders/status/:status/:page/:perPage   controllers.pay.Orders.listByStatus(status, page: Int, perPage: Int)
+POST    /orders/ref-id/:page/:perPage           controllers.pay.Orders.listByRefId(page: Int, perPage: Int)
+
+# Transactions management
+GET     /transactions/:transactionId            controllers.pay.Transactions.find(transactionId)
+GET     /transactions/source/:sourceId          controllers.pay.Transactions.findBySource(sourceId)
+GET     /transactions/all/:page/:perPage        controllers.pay.Transactions.list(page: Int, perPage: Int)
+POST    /transactions/callback                  controllers.pay.Transactions.callback
+
+# Exchange rates lookup
+GET     /rates/:refCurrency/:rateType           controllers.pay.Rates.current(refCurrency, rateType)
+
+# Local wallets management
+GET     /wallets/all                            controllers.pay.Wallets.list
+POST    /wallets/active/deposit                 controllers.pay.Wallets.transferCoins
+POST    /wallets/active/withdrawal/:coinAddress controllers.pay.Wallets.sendCoins(coinAddress)

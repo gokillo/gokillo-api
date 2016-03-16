@@ -1,0 +1,38 @@
+@(sender: models.common.Contact)(implicit lang: Lang)
+
+@import scala.util.control.Breaks._
+@import play.api.Play.current
+@import play.api.Play.configuration
+@import utils.common.env._
+
+@sender.role.map { role =>
+<span class="sender">@sender.name</span><span class="separator">|</span><span class="role">@role</span>
+}
+<br/>
+@configuration.getConfig("common.company").map { config =>
+<span class="company">@config.getString("name")</span><br/>
+@config.getString("address.zip") @config.getString("address.city") &ndash; @config.getString("address.country")<br/>
+}
+@if(sender.isPublic) {
+  val list = List(
+  (Some(sender.email), Messages("common.email")),
+  (sender.phone, Messages("common.phone")),
+  (sender.mobile, Messages("common.mobile")))
+
+  val sb = new StringBuilder
+
+  for(i <- list.indices) {
+    if (list(i)._1.isDefined) {
+      breakable { for (j <- 0 to i - 1) {
+        if (list(j)._1.isDefined) { sb ++= " &bull; "; break }
+      }}
+      sb ++= list(i)._2 ++= " " ++= list(i)._1.get
+    }
+  }
+
+  if (sb.length > 0) sb ++= "<br/>"
+  Html(sb.toString)
+}
+@defining(peers(WebApp).url) { url =>
+<a href="@url.root">@url.endPoint.hostName</a><br/>
+}

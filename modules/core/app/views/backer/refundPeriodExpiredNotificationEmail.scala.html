@@ -1,0 +1,15 @@
+@(backer: models.auth.User, project: models.core.Project)(implicit lang: Lang)
+
+@import play.api.Play.current
+@import play.api.Play.configuration
+
+<p>@backer.firstName.map { firstName =>
+@Messages("common.email.greeting.to", firstName)
+}.getOrElse {
+@Messages("common.email.greeting")
+}</p>
+<p>@Messages("core.email.backer.refundPeriodExpiredNotification.body.1", project.name.get)
+@configuration.getString("common.emails.support").map { support =>
+<p>@Html(Messages("core.email.backer.refundPeriodExpiredNotification.body.2", s"""<a href="mailto:$support">$support</a>"""))</p>
+}
+<p>@Messages("common.email.salutation")</p>

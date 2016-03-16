@@ -1,0 +1,9 @@
+@(originator: models.auth.User, project: models.core.Project)(implicit lang: Lang)
+
+<p>@originator.firstName.map { firstName =>
+@Messages("common.email.greeting.to", firstName)
+}.getOrElse {
+@Messages("common.email.greeting")
+}</p>
+<p>@Messages("core.email.originator.cashInPeriodExpiredNotification.body", project.name.get)</p>
+<p>@Messages("common.email.salutation")</p>

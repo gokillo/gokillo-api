@@ -1,0 +1,197 @@
+@(sender: models.common.Contact, subject: String)(content: Html)(implicit lang: Lang, emailUrl: Option[String] = None)
+
+@import scala.collection.JavaConversions._
+@import org.joda.time.{DateTime, DateTimeZone}
+@import org.joda.time.format.DateTimeFormat
+@import play.api.Play.current
+@import play.api.Play.configuration
+@import utils.common.env._
+@import tags._
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>@subject</title>
+<style type="text/css">
+    body {
+        font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
+        font-size: 15px;
+        line-height: 20px;
+        background: #f2f2f2;
+        color: #404040;
+        margin: 0px;
+        padding: 40px;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        color: #1e96dc;
+    }
+    hr {
+        border: none;
+        background-color: #ccc;
+        color: #ccc;
+        height: 1px;
+        margin-top: 10px;
+    }
+    img {
+        border: none;
+        display: block;
+    }
+    a {
+        color: #1e96dc;
+        text-decoration: none;
+    }
+    a:active {
+        color: #1e96dc;
+    }
+    a:hover {
+        color: #1e96dc;
+        text-decoration: underline;
+    }
+    .align-left {
+        float: left;
+    }
+    .align-right {
+        float: right;
+    }
+    .btn {
+        font-size: 18px;
+        text-align: center;
+        display: inline-block;
+        padding: 10px 25px;
+        border-radius: 4px;
+    }
+    .btn:hover {
+        text-decoration: none;
+    }
+    .btn-green-gradient {
+        color: #fff;
+        background: #00a14f;
+        border-color: #009c4c;
+    }
+    .btn-green-gradient:hover,
+    .btn-green-gradient:focus {
+        color: #fff;
+        background: #006e36;
+        border-color: #009c4c;
+    }
+    .clear {
+        clear: both;
+    }
+    .footer {
+        color: #a4a4a4;
+        font-size: 90%;
+        margin-top: 15px;
+        text-decoration: none;
+    }
+    .footer img {
+        display: inline-block;
+        padding-right: 3px;
+    }
+    .header {
+        padding: 15px 35px;
+        background: #1e96dc;
+    }
+    .hidden {
+        display: none;
+    }
+    .message {
+        padding: 25px 0px 15px;
+        color: #404040;
+        font-size: 14px;
+        line-height: 24px;
+    }
+    .page {
+        background: white;
+        color: black;
+        margin: 0px;
+        padding: 35px 25px;
+    }
+    .role {
+        color: #c0c0c0;
+        font-size: 100%;
+    }
+    .sender {
+        color: #999999;
+        font-size: 110%;
+        font-weight: bold;
+    }
+    .separator {
+        color: #1e96dc;
+        font-size: 160%;
+        font-weight: bold;
+    }
+    .company {
+        color: #1e96dc;
+        font-weight: bold;
+    }
+    .signature {
+        color: #c0c0c0;
+        font-size: 90%;
+    }
+    .signature a {
+        color: #c0c0c0;
+    }
+    .subject {
+        color: #999999;
+        font-size: 20px;
+        line-height: 20px;
+        font-weight: bold;
+    }
+    .time {
+        color: #c0c0c0;
+        font-size: 90%;
+    }
+    @@media only screen and (max-device-width: 480px) {
+        body { font-size: 85% !important; }
+        .page { padding: 15px 25px 15px !important; }
+        .subject { font-size: 150% !important; }
+    }
+</style>
+</head>
+
+<body>
+<!-- Header -->
+<div class="header"><a href="@peers(WebApp).url.root">
+    <img src="@peers(Assets).endPoint("logo")"/>
+</a></div>
+
+<!-- Summary Text; shows up on iPhone / Gmail -->
+<span class="hidden">@subject</span>
+
+<!-- Content -->
+<div class="page clear">
+    <div class="subject">@subject</div>
+    <hr/>
+    <div class="time align-right">
+        @DateTimeFormat.mediumDateTime.withZone(DateTimeZone.forID(null)).print(DateTime.now)
+    </div>
+    <div class="message">
+        @content
+    </div>
+    <div class="signature">
+        @signature(sender)
+    </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    @if(emailUrl.isDefined) {
+    <div class="align-left">
+        @Messages("common.email.troubleViewingEmail")&nbsp;<a href="@emailUrl">@Messages("common.email.viewInBrowser")</a>
+    </div>
+    }
+    <div class="align-right">
+        @configuration.getConfigList("common.company.social").map { configList =>
+        @configList.map { config => @defining(config.getString("url")) { url =>
+        @config.getString("name").map { name => @if(name.toLowerCase != "email") {
+        <a href="@url">
+        } else {
+        <a href="@url?subject=@Messages("common.informationRequest")">
+        }
+        <img src="@peers(Assets).endPoint(name)" width="24" height="24"/>
+        </a>
+        }}}}
+    </div>
+</div>
+</body>
+</html>

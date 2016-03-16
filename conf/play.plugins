@@ -1,0 +1,6 @@
+400:play.modules.reactivemongo.ReactiveMongoPlugin
+500:com.typesafe.plugin.RedisPlugin
+510:play.api.libs.mailer.CommonsMailerPlugin
+800:services.auth.AuthPlugin
+810:services.pay.PayPlugin
+820:services.core.CorePlugin
